@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 # Program:
-#		test CTC forward algorithm showed \
+#		test CTC decoder showed \
 #		by https://blog.csdn.net/JackyTintin/article/details/79425866
 # Release:
-#		2018/07/03	ZhangDao	First release
+#		2018/07/08	ZhangDao	First release
 
 import numpy as np
 from collections import defaultdict
