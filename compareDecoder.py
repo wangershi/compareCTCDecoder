@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # Program:
 #		test CTC decoder showed \
-#		by https://blog.csdn.net/JackyTintin/article/details/79425866
+#		by https://github.com/DingKe/ml-tutorial/tree/master/ctc
 # Release:
 #		2018/07/08	ZhangDao	First release
 
