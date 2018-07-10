@@ -5,7 +5,7 @@ Compare three CTC decoder, that is greedy decoder, beam decoder and prefix beam 
 
 I give a example of the network outputs, which is processed by SoftMax, '0','1','2' represents the label and '0' represents blank.
 | name  | t=1   | t=2   | t=3 |
-|:--------:|:------|--------:|
+|--------|------|--------|--------|
 | 0     | 0.25  | 0.4   | 0.1 |
 | 1     | 0.4   | 0.35  | 0.5 |
 | 2     | 0.35  | 0.25  | 0.4 |
