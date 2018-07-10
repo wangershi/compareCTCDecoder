@@ -4,9 +4,6 @@
 #		by https://github.com/DingKe/ml-tutorial/tree/master/ctc
 # Release:
 #		2018/07/08	ZhangDao	First release
-#		2018/07/10	ZhangDao	Second release
-#			: fix the bug in prefixBeamDecode()
-#				that first Time ignore the blank path
 
 import numpy as np
 from collections import defaultdict
@@ -129,15 +126,16 @@ def prefixBeamDecode(y, beamSize=100, blank=0):
 	T, V = y.shape
 	logY = np.log(y)
 
-	beam = []	# blank, non-blank
-	# init, make sure blank path in beam
-	for i in range(V):
-		if i == blank:
-			beam.append((tuple(), (logY[0, i], nInf)))
-		else:
-			beam.append((tuple([i]), (nInf, logY[0, i])))
+	beam = [(tuple(), (0, nInf))]	# blank, non-blank
+	# beam = []	# blank, non-blank
+	# # init, make sure blank path in beam
+	# for i in range(V):
+	# 	if i == blank:
+	# 		beam.append((tuple(), (logY[0, i], nInf)))
+	# 	else:
+	# 		beam.append((tuple([i]), (nInf, logY[0, i])))
 
-	for t in range(1, T):	# for every timestep
+	for t in range(0, T):	# for every timestep
 		newBeam = defaultdict(lambda : (nInf, nInf))
 
 		for prefix, (probabilityWithBlank, probabilityNoBlank) in beam:
@@ -246,12 +244,11 @@ def solve():
 
 	print ('\n---------------------------------------------')
 	print ('prefix beam decode:')
-	beam = prefixBeamDecode(y, beamSize=3)
+	beam = prefixBeamDecode(y, beamSize=2)
 	for string, score in beam:
 		print ('\tB(%s) = %s, score is %.4f' % (string, removeBlank(string), np.exp(logSumExp(*score))))
-	# B((2, 1)) = [2, 1], score is 0.2185
-	# B((1, 2)) = [1, 2], score is 0.1550
-	# B((1,)) = [1], score is 0.1525
+	# B((1, 2)) = [1, 2], score is 0.1200
+	# B((2, 1)) = [2, 1], score is 0.1137
 
 if __name__ == '__main__':
 	solve()
